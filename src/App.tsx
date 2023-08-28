@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { TUserWidth } from './utils/types/type';
 import './App.scss';
 
 // components
 import Signup from './components/sign up/Signup';
 
-function App() {
+function App() {  
   useEffect(() => {
-    const handleResizeWindow = () => setUserWidth(window.innerWidth);
+    const handleResizeWindow : any = () => setUserWidth(window.innerWidth);
+    handleResizeWindow();
     window.addEventListener("resize", handleResizeWindow);
     return () => {
        window.removeEventListener("resize", handleResizeWindow);

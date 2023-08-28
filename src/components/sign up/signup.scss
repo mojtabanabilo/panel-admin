@@ -24,6 +24,7 @@
                 width: 100%;
                 margin-bottom: 10px;
                 @include flex(column, center, center);
+                span{}
                 input {
                     width: 90%;
                     padding: 10px;
