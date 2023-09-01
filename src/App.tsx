@@ -1,27 +1,30 @@
 import { useState, useEffect } from 'react';
 import { TUserWidth } from './utils/types/type';
+import { Routes, Route } from 'react-router-dom';
+import { setStateResize } from './utils/functions/functions';
 import './App.scss';
 
 // components
 import Signup from './components/sign up/Signup';
+import Main from './components/navbar/Navbar';
 
 function App() {  
+  // lifecycle
   useEffect(() => {
-    const handleResizeWindow : any = () => setUserWidth(window.innerWidth);
-    handleResizeWindow();
-    window.addEventListener("resize", handleResizeWindow);
-    return () => {
-       window.removeEventListener("resize", handleResizeWindow);
-    };
+    setStateResize(setUserWidth);
   }, []);
 
   // states
-  const [signUp, setSignUp] = useState<boolean>(true);
+  // const [signUp, setSignUp] = useState<boolean>(true);
   const [userWidth, setUserWidth] = useState<TUserWidth>(null);
+  
 
   return (
     <div className="App">
-      <Signup userScreen={userWidth}/>
+      <Routes>
+        <Route path='/' element={<Signup userScreen={userWidth}/>}/>
+        <Route path='/main' element={<Main />}/>
+      </Routes>
     </div>
   );
 }

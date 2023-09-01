@@ -1,6 +1,6 @@
 import {FC, useState, useEffect} from 'react';
-import { setInput, signUpValidation, handleInputChange, notify } from '../../utils/functions/functions';
-import { IScreenProps, ISignUpValidationInput } from '../../utils/types/interface';
+import { signUpValidation, handleInputChange, notify, detectTextDirection } from '../../utils/functions/functions';
+import { IScreenProps } from '../../utils/types/interface';
 import { TMessage } from '../../utils/types/type';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,27 +8,17 @@ import "./signup.scss";
 
 const Signup : FC<IScreenProps> = ({userScreen}) => {    
     // states
-    const [name, setName] = useState<string>('');
-    const [email, setEmail] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const [error, setError] = useState<object>({});
     const [message, setMessage] = useState<TMessage>({
         name: "",
         email: "",
         password: ""
     })
-    const [error, setError] = useState<object>({});
-    console.log(error);
-    console.log(message);
     
     // lifecycle
     useEffect(() => {
         setError(signUpValidation(message))
     }, [message])
-
-    // direction handler
-    const nameDirection = message.name && /[A-Za-z]/.test(message.name) ? 'ltr' : 'rtl';
-    const emailDirection = message.email && /[A-Za-z]/.test(message.email) ? 'ltr' : 'rtl';
-    const passwordDirection = message.password && /[A-Za-z]/.test(message.password) ? 'ltr' : 'rtl';
     
     return (
         <div className='form'>
@@ -36,7 +26,7 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                 <h2>ثبت نام</h2>
                 <form>
                     <div className="form-group">
-                        <input style={{ direction: nameDirection }}
+                        <input style={{ direction: detectTextDirection(message.name) }}
                             name="name"
                             value={message.name}
                             type="text"
@@ -45,7 +35,7 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                         />
                     </div>
                     <div className="form-group">
-                        <input style={{ direction: emailDirection }}
+                        <input style={{ direction: detectTextDirection(message.email) }}
                             name="email"
                             value={message.email}
                             type="email"
@@ -54,7 +44,7 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                         />
                     </div>
                     <div className="form-group">
-                        <input style={{ direction: passwordDirection }}
+                        <input style={{ direction: detectTextDirection(message.password) }}
                             name="password"
                             value={message.password}
                             type="password"

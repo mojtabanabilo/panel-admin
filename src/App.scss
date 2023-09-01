@@ -1,3 +1,4 @@
+@import "./sass//mixin/mixins";
 @font-face {
     font-family: fonts;
     src: url(./assets/font/Yekan.ttf),
@@ -9,8 +10,9 @@
     margin: 0;
     font-family: fonts;
     .App{
-        width: 100vw;
-        height: 100vh;
-        background: greenyellow;
+        max-width: 100vw;
+        max-height: 100vh;
+        overflow: hidden;
+        @include flex(column, center, center);
     }
 }
