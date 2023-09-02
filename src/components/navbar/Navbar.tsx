@@ -2,11 +2,14 @@ import { useState } from 'react';
 import styles from "./Navbar.module.scss";
 import { Icon } from '@iconify/react';
 import { setStateSearchBar, detectTextDirection } from '../../utils/functions/functions';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 const Main = () => {
     // states
     const [searchBar, setSearchBar] = useState<string>();
     const [isHovered, setIsHovered] = useState<boolean>(false);
+    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
 
     // functions
     const handleMouseEnter = () => {
@@ -49,7 +52,15 @@ const Main = () => {
                 />
             </section>
             <section>
-                
+                <Dropdown style={{zIndex: "100", position: "absolute"}}>
+                    <Dropdown.Toggle id="dropdown-basic" style={{background: "red"}}>
+                        زبان
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item href="#/action-1">فارسی</Dropdown.Item>
+                        <Dropdown.Item href="#/action-2">انگلیسی</Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
             </section>
         </header>
     );

@@ -30,7 +30,7 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                             name="name"
                             value={message.name}
                             type="text"
-                            onChange={(e) => handleInputChange(e, message, setMessage)}
+                            onChange={(e) => handleInputChange(e,  setMessage)}
                             placeholder="نام"
                         />
                     </div>
@@ -39,7 +39,7 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                             name="email"
                             value={message.email}
                             type="email"
-                            onChange={(e) => handleInputChange(e, message, setMessage)}
+                            onChange={(e) => handleInputChange(e,  setMessage)}
                             placeholder="ایمیل"
                         />
                     </div>
@@ -48,7 +48,7 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                             name="password"
                             value={message.password}
                             type="password"
-                            onChange={(e) => handleInputChange(e, message, setMessage)}
+                            onChange={(e) => handleInputChange(e,  setMessage)}
                             placeholder="رمز عبور"
                         />
                     </div>

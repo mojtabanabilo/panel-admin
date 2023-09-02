@@ -3,6 +3,7 @@ import { TUserWidth } from './utils/types/type';
 import { Routes, Route } from 'react-router-dom';
 import { setStateResize } from './utils/functions/functions';
 import './App.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // components
 import Signup from './components/sign up/Signup';
