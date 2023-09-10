@@ -52,6 +52,13 @@ export const notify = (message: object) => {
     if(Object.keys(message).length === 0) toast("ثبت نام با موفقیت انجام شد");
     else if(Object.keys(message).length > 0) toast(`${Object.values(message).join(' - ')}`);
 };
+
+export const submitHandler = (error : object, navigate : Function) => {
+    JSON.stringify(notify(error));
+    setTimeout(() => {
+        if(Object.keys(error).length === 0) navigate("/main", {replace: true});
+    }, 2000);
+}
 // functions Signup components
 
 // functions App component

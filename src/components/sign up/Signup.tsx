@@ -1,12 +1,13 @@
 import {FC, useState, useEffect} from 'react';
-import { signUpValidation, handleInputChange, notify, detectTextDirection } from '../../utils/functions/functions';
-import { IScreenProps } from '../../utils/types/interface';
+import { useNavigate } from 'react-router-dom';
+import { signUpValidation, handleInputChange, detectTextDirection, submitHandler } from '../../utils/functions/functions';
+import { useMyContext } from '../../context/context';
 import { TMessage } from '../../utils/types/type';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./signup.scss";
+import styles from "./signup.module.scss";
 
-const Signup : FC<IScreenProps> = ({userScreen}) => {    
+const Signup : FC = () => {    
     // states
     const [error, setError] = useState<object>({});
     const [message, setMessage] = useState<TMessage>({
@@ -14,6 +15,12 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
         email: "",
         password: ""
     })
+
+    // context
+    const {userWidth} = useMyContext();
+
+    // navigator
+    const navigate = useNavigate();
     
     // lifecycle
     useEffect(() => {
@@ -21,11 +28,11 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
     }, [message])
     
     return (
-        <div className='form'>
-            <div className="container">
-                <h2>ثبت نام</h2>
-                <form>
-                    <div className="form-group">
+        <div className={styles.form}>
+            <div className={styles.container}>
+                <form className={styles.form_container}>
+                    <h2>ثبت نام</h2>
+                    <div className={styles.form_group}>
                         <input style={{ direction: detectTextDirection(message.name) }}
                             name="name"
                             value={message.name}
@@ -34,7 +41,7 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                             placeholder="نام"
                         />
                     </div>
-                    <div className="form-group">
+                    <div className={styles.form_group}>
                         <input style={{ direction: detectTextDirection(message.email) }}
                             name="email"
                             value={message.email}
@@ -43,7 +50,7 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                             placeholder="ایمیل"
                         />
                     </div>
-                    <div className="form-group">
+                    <div className={styles.form_group}>
                         <input style={{ direction: detectTextDirection(message.password) }}
                             name="password"
                             value={message.password}
@@ -53,19 +60,19 @@ const Signup : FC<IScreenProps> = ({userScreen}) => {
                         />
                     </div>
                     <button type="submit" onClick={(e) => {
-                        e.preventDefault()
-                        return JSON.stringify(notify(error))
+                        e.preventDefault();
+                        submitHandler(error, navigate);
                     }}>ثبت نام</button>
                 </form>
+                {userWidth && userWidth >= 795 && (
+                    <div className={styles.image_form}>
+                        <img
+                            src={require("../../assets/image/Revenue-cuate.svg").default}
+                            alt="illustrator key"
+                        />
+                    </div>
+                )}
             </div>
-            {userScreen && userScreen >= 795 && (
-                <div className='image-form'>
-                    <img
-                        src={require("../../assets/image/Revenue-cuate.svg").default}
-                        alt="illustrator key"
-                    />
-                </div>
-            )}
             <ToastContainer 
                 position="top-center"
                 autoClose={2000}

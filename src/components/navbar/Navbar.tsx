@@ -1,15 +1,18 @@
-import { useState } from 'react';
+import { useState, FC } from 'react';
 import styles from "./Navbar.module.scss";
 import { Icon } from '@iconify/react';
 import { setStateSearchBar, detectTextDirection } from '../../utils/functions/functions';
+import { useMyContext } from '../../context/context';
 import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
 
-const Main = () => {
+const Main : FC = () => {
     // states
     const [searchBar, setSearchBar] = useState<string>();
     const [isHovered, setIsHovered] = useState<boolean>(false);
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
+    // context
+    const {setSidebar} = useMyContext();
 
     // functions
     const handleMouseEnter = () => {
@@ -27,8 +30,8 @@ const Main = () => {
                             fontSize: '20px',
                             position: "absolute", 
                             top: "50%", 
-                            left: "98%",
-                            transform: "translate(-98% , -50%)",
+                            left: "99%",
+                            transform: "translate(-99% , -50%)",
                             color: "#acacac"
                         }}
                     />
@@ -43,17 +46,25 @@ const Main = () => {
                     style={{ 
                         fontSize: '30px', 
                         cursor: "pointer",
-                        marginLeft: "40px",
+                        marginLeft: "5px",
                         transform: isHovered ? 'rotateZ(180deg)' : 'rotateZ(0deg)',
                         transition: 'all .5s'
-                    }} 
+                    }}
+                    onClick={() => setSidebar(true)}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 />
             </section>
-            <section>
-                <Dropdown style={{zIndex: "100", position: "absolute"}}>
-                    <Dropdown.Toggle id="dropdown-basic" style={{background: "red"}}>
+            <section className={styles.language}>
+                <div className={styles.theme}>
+                    <Icon icon="gg:dark-mode" style={{fontSize: "25px", marginRight: "5px"}}/>
+                    <Form.Check
+                        type="switch"
+                        id="custom-switch"
+                    />
+                </div>
+                <Dropdown style={{margin: "0 20px"}}>
+                    <Dropdown.Toggle id="dropdown-basic">
                         زبان
                     </Dropdown.Toggle>
                     <Dropdown.Menu>

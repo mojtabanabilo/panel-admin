@@ -1,0 +1,56 @@
+@import "../../sass/mixin/mixins";
+.sidebar{
+    position: absolute;
+    left: 100%;
+    transform: translateX(-100%);
+    z-index: 100;
+    width: 250px;
+    height: 100vh;
+    background: rgb(240, 240, 240);
+    box-shadow: -8px 0px 10px #d8d8d8;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    .title_sidebar{
+        width: 100%;
+        padding: 15px;
+        @include flex(row, space-between, center);
+        h2{
+            margin: 0;
+        }
+    }
+    .items_sidebar{
+        width: 100%;
+        margin-top: 30px;
+        .items{
+            width: 100%;
+            padding: 0 10px;
+            margin-top: 10px;
+            @include flex(row-reverse, flex-start, center);
+            p{
+                margin: 0;
+                font-weight: 300;
+                font-size: 1.5rem;
+                cursor: pointer;
+                margin-right: 5px;
+                color: #949494;
+            }
+        }
+    }
+    .signout{
+        position: absolute;
+        top: 100%;
+        transform: translateY(-100%);
+        width: 100%;
+        border-top: 2px solid #acacac;
+        padding: 10px;
+        @include flex(row-reverse, flex-start, center);
+        p{
+            margin: 0;
+            font-weight: 300;
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin-right: 5px;
+            color: #949494;
+        }
+    }
+}

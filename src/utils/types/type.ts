@@ -4,3 +4,9 @@ export type TMessage = {
     email: string | undefined,
     password: string | undefined
 };
+export type TSidebarProps = {
+    showSidebar: {
+        sidebar: boolean;
+        setSidebar: React.Dispatch<React.SetStateAction<boolean | null>>;
+    }
+  };

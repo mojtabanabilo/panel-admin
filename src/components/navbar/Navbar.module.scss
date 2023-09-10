@@ -2,16 +2,18 @@
 .container{
     width: 100%;
     height: fit-content;
-    padding: 20px;
-    @include flex(row, space-between, center);
+    padding: 15px;
+    box-shadow: 8px 0px 8px #919191;
+    @include flex(row-reverse, space-between, center);
     .searchbar_menu{
-        width: 40%;
-        @include flex(row, center, center);
+        width: 70%;
+        @include flex(row, flex-end, center);
         .searchbar{
             width: 100%;
             position: relative;
+            @include flex(row, flex-end, center);
             input{
-                width: 100%;
+                width: 50%;
                 height: 40px;
                 border: solid 2px #cecece;
                 padding: 0 30px 0 10px;
@@ -25,7 +27,17 @@
                 &::placeholder{
                     color: #acacac;
                 }
+                @media (max-width: 800px) {
+                    width: 70%;
+                }
             }
+        }
+    }
+    .language{
+        width: 30%;
+        @include flex(row, flex-start, center);
+        .theme{
+            @include flex(row, center, center);
         }
     }
 }
