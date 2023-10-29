@@ -13,3 +13,34 @@ export interface ISignUpValidationInput {
     email?: string | null | undefined,
     password?: string | null | undefined 
 }
+
+export interface ICreateProduct {
+    name: string,
+    count: string,
+    price: string
+}
+
+export interface ICurrentItem {
+    name?: string,
+    count?: string,
+    price?: string
+}
+
+export interface ICreateProductValidation {
+    name: string | null,
+    count: string | null,
+    price: string | null
+}
+
+export interface IModalCreateItemError {
+    nameField?: string | null,
+    countField?: string | null,
+    priceField?: string | null
+}
+
+export interface ITouchProperties {
+    nameTouch: boolean,
+    countTouch: boolean,
+    priceTouch: boolean
+}
+

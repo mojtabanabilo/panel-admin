@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { setStateResize } from './utils/functions/functions';
 import { useMyContext } from './context/context';
@@ -8,11 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // components
 import Signup from './components/sign up/Signup';
 import Main from './components/main/Main';
-import Sidebar from './components/sidebar/Sidebar';
+import ModalCreateItem from './components/modal/ModalCreateItem';
+import ModalEditItem from './components/modal/ModalEditItem';
 
 function App() {  
   // context
-  const {setUserWidth, sidebar} = useMyContext(); 
+  const {setUserWidth, data, setData, setModalAdd, modalAdd, modalEdit} = useMyContext();
 
   // lifecycle
   useEffect(() => {
@@ -21,10 +22,12 @@ function App() {
 
   return (
     <div className="App">
-      {sidebar && <Sidebar />} 
+      {modalAdd && <ModalCreateItem />}
+      {/* {modalEdit && <ModalEditItem />} */}
       <Routes>
         <Route path='/' element={<Signup />}/>
         <Route path='/main' element={<Main />}/>
+        <Route path='/editItem/:indexItem' element={<ModalEditItem />}/>
       </Routes>
     </div>
   );

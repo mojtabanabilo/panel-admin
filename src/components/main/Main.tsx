@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from "./main.module.scss";
+import { useMyContext } from '../../context/context';
+
 
 // components
 import Navbar from "../navbar/Navbar";
+import Sidebar from '../sidebar/Sidebar';
+import Income from '../income/Income';
+import Products from '../products/Products';
 
-
-const Main = () => {
+const Main : FC = () => {
     return (
-        <div>
+        <div className={styles.main}>
             <Navbar />
+            <Sidebar />
+            <Income />
+            <Products />
         </div>
     );
 };

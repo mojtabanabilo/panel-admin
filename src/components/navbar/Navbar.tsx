@@ -9,18 +9,9 @@ import Form from 'react-bootstrap/Form';
 const Main : FC = () => {
     // states
     const [searchBar, setSearchBar] = useState<string>();
-    const [isHovered, setIsHovered] = useState<boolean>(false);
 
     // context
     const {setSidebar} = useMyContext();
-
-    // functions
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
 
     return (
         <header className={styles.container}>
@@ -42,18 +33,6 @@ const Main : FC = () => {
                     placeholder='جستجو'
                     />
                 </div>
-                <Icon icon="ic:round-menu" 
-                    style={{ 
-                        fontSize: '30px', 
-                        cursor: "pointer",
-                        marginLeft: "5px",
-                        transform: isHovered ? 'rotateZ(180deg)' : 'rotateZ(0deg)',
-                        transition: 'all .5s'
-                    }}
-                    onClick={() => setSidebar(true)}
-                    onMouseEnter={handleMouseEnter}
-                    onMouseLeave={handleMouseLeave}
-                />
             </section>
             <section className={styles.language}>
                 <div className={styles.theme}>

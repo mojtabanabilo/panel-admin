@@ -1,88 +1,85 @@
-import { FC } from 'react';
+import { FC, useState} from 'react';
 import styles from "./sidebar.module.scss";
 import { Icon } from '@iconify/react';
-import { useMyContext } from '../../context/context';
+import sidebarNav from '../../config/sidebarNav';
+import { handleMouseEvent } from '../../utils/functions/functions';
 
 const Sidebar : FC = () => {
-    // context
-    const { setSidebar } = useMyContext();
-
+    // states
+    const [click, setClick] = useState<boolean>(false);
+    const [isHovered, setIsHovered] = useState<boolean>(false);    
+    
     // icon styles
     const iconStyle = {
         fontSize: '30px',
         color: "#5c5c5c",
         cursor: "pointer"
     }
-    
+
     return (
-        <div className={styles.sidebar}>
-            <div className={styles.title_sidebar}>
-                <Icon 
-                    icon="mdi:cancel-box-outline"
-                    style={iconStyle}
-                    onClick={() => setSidebar(false)}
-                />
-                <h2>فهرست</h2>
+            <div className={click === false ? styles.sidebar_close : styles.sidebar_open}>
+                {
+                    click === false ? <div className={styles.title_sidebar_close}>
+                        <Icon icon="ic:round-menu" 
+                            style={{ 
+                                fontSize: '30px', 
+                                cursor: "pointer",
+                                transform: isHovered ? 'rotateZ(180deg)' : 'rotateZ(0deg)',
+                                transition: 'all .5s'
+                            }}
+                            onClick={() => setClick(true)}
+                            onMouseEnter={() => handleMouseEvent(setIsHovered, isHovered)}
+                            onMouseLeave={() => handleMouseEvent(setIsHovered, isHovered)}
+                        /> 
+                    </div> : <div className={styles.title_sidebar_open}>
+                        <Icon 
+                            icon="mdi:cancel-box-outline"
+                            style={iconStyle}
+                            onClick={() => {
+                                setClick(false)
+                            }}
+                        />
+                        <h2>فهرست</h2>
+                    </div>
+                }
+                {
+                    click === false ? <div className={styles.items_icons}>
+                        {
+                            sidebarNav.map((i, index) => <Icon 
+                                    icon={i.icon}
+                                    style={iconStyle}
+                                    key={index}
+                                />
+                            )
+                        }
+                    </div> : <div className={styles.items_sidebar}>
+                        {
+                            sidebarNav.map((i, index) => <div className={styles.items} key={index}>
+                                <Icon 
+                                    icon={i.icon}
+                                    style={iconStyle}
+                                />
+                                <p>{i.text}</p>
+                            </div>
+                            )
+                        }
+                    </div>
+                }
+                {
+                    click === false ? <div className={styles.signout_close}>
+                            <Icon 
+                                icon="ph:sign-out-bold"
+                                style={iconStyle}
+                            />
+                        </div> : <div className={styles.signout_open}>
+                        <Icon 
+                            icon="ph:sign-out-bold"
+                            style={iconStyle}
+                        />
+                        <p>خروج</p>
+                    </div>
+                }
             </div>
-            <div className={styles.items_sidebar}>
-                <div className={styles.items}>
-                    <Icon 
-                        icon="material-symbols:dashboard-outline"
-                        style={iconStyle}
-                    />
-                    <p>داشبورد</p>
-                </div>
-                <div className={styles.items}>
-                    <Icon 
-                        icon="fluent-mdl2:product"
-                        style={iconStyle}
-                    />
-                    <p>محصولات</p>
-                </div>
-                <div className={styles.items}>
-                    <Icon 
-                        icon="mdi:human-greeting"
-                        style={iconStyle}
-                    />
-                    <p>مشتریان</p>
-                </div>
-                <div className={styles.items}>
-                    <Icon 
-                        icon="icon-park-outline:transaction-order"
-                        style={iconStyle}
-                    />
-                    <p>سفارشات</p>
-                </div>
-                <div className={styles.items}>
-                    <Icon 
-                        icon="prime:chart-line"
-                        style={iconStyle}
-                    />
-                    <p>آنالیزها</p>
-                </div>
-                <div className={styles.items}>
-                    <Icon 
-                        icon="tabler:discount"
-                        style={iconStyle}
-                    />
-                    <p>تخفیفات</p>
-                </div>
-                <div className={styles.items}>
-                    <Icon 
-                        icon="material-symbols:inventory"
-                        style={iconStyle}
-                    />
-                    <p>موجودی انبار</p>
-                </div>
-            </div>
-            <div className={styles.signout}>
-                <Icon 
-                    icon="ph:sign-out-bold"
-                    style={iconStyle}
-                />
-                <p>خروج</p>
-            </div>
-        </div>
     );
 };
 

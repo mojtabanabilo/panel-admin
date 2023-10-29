@@ -31,7 +31,6 @@ const Signup : FC = () => {
         <div className={styles.form}>
             <div className={styles.container}>
                 <form className={styles.form_container}>
-                    <h2>ثبت نام</h2>
                     <div className={styles.form_group}>
                         <input style={{ direction: detectTextDirection(message.name) }}
                             name="name"
@@ -62,7 +61,7 @@ const Signup : FC = () => {
                     <button type="submit" onClick={(e) => {
                         e.preventDefault();
                         submitHandler(error, navigate);
-                    }}>ثبت نام</button>
+                    }}>ورود</button>
                 </form>
                 {userWidth && userWidth >= 795 && (
                     <div className={styles.image_form}>

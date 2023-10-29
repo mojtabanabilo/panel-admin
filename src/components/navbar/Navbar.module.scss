@@ -2,8 +2,9 @@
 .container{
     width: 100%;
     height: fit-content;
-    padding: 15px;
-    box-shadow: 8px 0px 8px #919191;
+    padding: 15px 100px 15px 15px;
+    background: #f0f0f0;
+    box-shadow: -8px 0px 8px #919191;
     @include flex(row-reverse, space-between, center);
     .searchbar_menu{
         width: 70%;
@@ -21,6 +22,7 @@
                 box-sizing: border-box;
                 direction: rtl;
                 font-size: 1.1rem;
+                background: inherit;
                 &:focus{
                     outline: none;
                 }

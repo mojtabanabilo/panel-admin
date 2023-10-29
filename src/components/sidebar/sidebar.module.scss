@@ -1,16 +1,75 @@
 @import "../../sass/mixin/mixins";
-.sidebar{
-    position: absolute;
-    left: 100%;
+
+@keyframes sidebarOpenParagraph {
+    0% {
+        transform: translateX(200px);
+        transition: all 1s ease;
+    } 
+    100% {
+        transform: translateX(0);
+        transition: all 1s ease;
+    }
+}
+
+.sidebar_close{
+    z-index: 100;
+    width: 75px;
+    height: 100vh;
+    background: #f0f0f0;
+    box-shadow: -8px 0px 8px #d8d8d8;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    overflow: hidden;
+    transition: all .5s;
+    position: relative;
+    @include position(absolute, _, _, _, 100%);
     transform: translateX(-100%);
+    .title_sidebar_close{
+        width: 100%;
+        padding-top: 20px;
+        @include flex(row, center, center);
+    }
+    .items_icons{
+        width: 100%;
+        @include flex(column, center, center);
+        margin-top: 30px;
+        >*{
+            margin-top: 15px;
+        }
+    }
+    .signout_close{
+        position: absolute;
+        top: 100%;
+        transform: translateY(-100%);
+        width: 100%;
+        border-top: 2px solid #acacac;
+        padding: 10px;
+        @include flex(row, center, center);
+    }
+}
+
+.sidebar_open{
     z-index: 100;
     width: 250px;
     height: 100vh;
-    background: rgb(240, 240, 240);
-    box-shadow: -8px 0px 10px #d8d8d8;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    .title_sidebar{
+    background: #f0f0f0;
+    box-shadow: -8px 0px 8px #d8d8d8,
+    8px 0px 8px #d8d8d8;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    @include position(absolute, _, _, _, 100%);
+    transform: translateX(-100%);
+    .title_sidebar_open{
+        width: 100%;
+        padding: 15px;
+        @include flex(row, space-between, center);
+        h2{
+            margin: 0;
+            animation: sidebarOpenParagraph 1s forwards;
+        }
+    }
+    .title_sidebar_open{
         width: 100%;
         padding: 15px;
         @include flex(row, space-between, center);
@@ -21,10 +80,11 @@
     .items_sidebar{
         width: 100%;
         margin-top: 30px;
+        @include flex(column, center, flex-end);
         .items{
             width: 100%;
             padding: 0 10px;
-            margin-top: 10px;
+            margin-top: 15px;
             @include flex(row-reverse, flex-start, center);
             p{
                 margin: 0;
@@ -33,10 +93,16 @@
                 cursor: pointer;
                 margin-right: 5px;
                 color: #949494;
+                transition: all .3s ease;
+                animation: sidebarOpenParagraph 1s forwards;
+                &:hover{
+                    color: #006eff;
+                    transition: all .3s ease;
+                }
             }
         }
     }
-    .signout{
+    .signout_open{
         position: absolute;
         top: 100%;
         transform: translateY(-100%);
@@ -51,6 +117,12 @@
             cursor: pointer;
             margin-right: 5px;
             color: #949494;
+            transition: all .3s ease;
+            animation: sidebarOpenParagraph 1s forwards;
+            &:hover{
+                color: #ff3838;
+                transition: all .3s ease;
+            }
         }
     }
 }

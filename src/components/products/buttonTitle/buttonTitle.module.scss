@@ -1,0 +1,20 @@
+@import "../../../sass/mixin/mixins";
+
+.title_button{
+    width: 90%;
+    @include flex(row, flex-end, center);
+    h2{
+        margin: 0;
+    }
+    .plus{
+        border: none;
+        width: fit-content;
+        height: fit-content;
+        margin-right: 10px;
+        transition: all .5s;
+        &:hover{
+            transform: rotateZ(45deg);
+            transition: all .5s;
+        }
+    }
+}
