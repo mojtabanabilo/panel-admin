@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const ModalCreateItem = () : JSX.Element => {
   //states
-  const [errors, setErrors] = useState<IModalCreateItemError | null>({});
+  const [errors, setErrors] = useState<IModalCreateItemError>({});
   const [touch, setTouch] = useState<ITouchProperties>({
     nameTouch: false,
     countTouch: false,
@@ -126,7 +126,7 @@ const ModalCreateItem = () : JSX.Element => {
           <Button
             variant="primary"
             onClick={async () => {
-              if(errors?.nameField === "" && errors?.countField === "" && errors?.priceField === "") {
+              if(Object.keys(errors).length > 0) {
                 await toast.error('اطلاعات معتبر نیست !', {
                   position: "bottom-center",
                   autoClose: 2500,

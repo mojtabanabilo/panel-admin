@@ -4,7 +4,7 @@ import { ICreateProduct } from '../../utils/types/interface';
 
 // components
 import ButtonTitle from './buttonTitle/ButtonTitle';
-import Table from './table/Table';
+import Table from './table/Tables';
 
 const Products = () => {
     return (

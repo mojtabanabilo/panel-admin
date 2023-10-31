@@ -1,0 +1,9 @@
+@import "../../../sass/mixin/mixins";
+
+.title{
+    width: 90%;
+    @include flex(row, flex-end, center);
+    h2{
+        margin: 0;
+    }
+}

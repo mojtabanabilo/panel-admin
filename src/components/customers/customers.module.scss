@@ -1,0 +1,9 @@
+@import "../../sass/mixin/mixins";
+
+.customer{
+    width: 100%;
+    padding-right: 100px;
+    margin-top: 50px;
+    @include flex(column, center, center);
+    // background: rgb(220, 42, 255);
+}

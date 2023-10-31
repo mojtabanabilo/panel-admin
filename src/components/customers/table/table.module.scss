@@ -1,0 +1,46 @@
+@import "../../../sass/mixin/mixins";
+
+.table_container{
+    width: 90%;
+    margin-top: 20px;
+    @include flex(row, center, center);
+    .table_customer{
+        min-width: 100%;
+        direction: rtl;
+        .tr_thead_customer{
+            .th_thead_customer{
+                font-size: 1.2rem;
+                background: #0D6EFD;
+                color: #ffffff;
+                font-weight: 600;
+                border: none;
+                text-align: center;
+                padding: 8px;
+                &:nth-child(1){
+                    border-top-right-radius: 10px;
+                }
+                &:nth-child(7){
+                    border-top-left-radius: 10px;
+                }
+            }
+        }
+        .tr_tbody_customer{
+            &:nth-of-type(2n){
+                background: #c9d8ff;;
+            }
+            .td_tbody_customer{
+                text-align: center;
+                padding: 8px;
+            }
+        }
+    }
+}
+@media (max-width: 650px) {
+    .table_container{
+        .table{
+            th{
+                display: none;
+            }
+        }
+    }
+}

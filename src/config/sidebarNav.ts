@@ -1,7 +1,7 @@
 const sidebarNav = [
     {
       section: "dashboard",
-      icon: "material-symbols:dashboard-outline", //width:"20"
+      icon: "material-symbols:dashboard-outline",
       text: "داشبورد",
     },
     {
@@ -36,5 +36,5 @@ const sidebarNav = [
     },
   ];
   
-  export default sidebarNav;
+export default sidebarNav;
   
